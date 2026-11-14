@@ -29,52 +29,77 @@ def dot_grid(w, h, color, step=22):
             f'<rect width="{w}" height="{h}" fill="url(#g)"/>')
 
 
+def right_panel(t):
+    """Agentic harness (hub + skills, plugins, MCP...) feeding a live bootstrap distribution."""
+    import math, random
+    cx, cy, R = 628, 172, 94
+    sats = [("MCP", "servers", "cyan"), ("SKILLS", "packaged", "violet"), ("PLUGINS", "hooks", "violet"),
+            ("PIPELINES", "automated", "green"), ("DATA", "lakehouse", "amber"), ("EVALS", "tests", "rose")]
+    out = [f'<text x="514" y="40" style="font:10px {MONO};letter-spacing:2px" fill="{t["muted"]}">AGENTIC HARNESS  ·  STATISTICAL RIGOR</text>',
+           f'<circle cx="{cx}" cy="{cy}" r="{R}" fill="none" stroke="{t["border"]}" stroke-dasharray="3 6" class="orbit"/>',
+           f'<circle cx="{cx}" cy="{cy}" r="{R - 34}" fill="none" stroke="{t["border"]}" stroke-opacity=".6"/>']
+    for i, (lab, sub, col) in enumerate(sats):
+        ang = math.radians(-90 + i * 60)
+        x, y = cx + R * math.cos(ang), cy + R * math.sin(ang)
+        c = t[col]
+        out.append(f'<path id="s{i}" d="M{cx},{cy} L{x:.1f},{y:.1f}" stroke="{t["border"]}" stroke-width="1.4"/>')
+        dur = 2.2 + (i % 3) * 0.4
+        out.append(f'<circle r="2.8" fill="{c}"><animateMotion dur="{dur}s" begin="{i * .3:.1f}s" repeatCount="indefinite" '
+                   f'keyPoints="0;1;0" keyTimes="0;.5;1" calcMode="linear"><mpath href="#s{i}"/></animateMotion></circle>')
+        out.append(f'<g class="node" style="animation-delay:{.3 + i * .2:.1f}s">'
+                   f'<rect x="{x - 37:.1f}" y="{y - 14:.1f}" width="74" height="28" rx="14" fill="{t["panel"]}" stroke="{c}" stroke-opacity=".75"/>'
+                   f'<text x="{x:.1f}" y="{y - 1:.1f}" class="nl" fill="{c}">{lab}</text>'
+                   f'<text x="{x:.1f}" y="{y + 9:.1f}" class="ns">{sub}</text></g>')
+    out.append(f'<circle cx="{cx}" cy="{cy}" r="38" fill="{t["cyan"]}" opacity=".10" class="breathe"/>'
+               f'<circle cx="{cx}" cy="{cy}" r="30" fill="{t["panel"]}" stroke="url(#hl)" stroke-width="2"/>'
+               f'<text x="{cx}" y="{cy - 1}" class="nl" fill="{t["text"]}" style="font-size:12px">AGENT</text>'
+               f'<text x="{cx}" y="{cy + 11}" class="ns">harness</text>')
+
+    # stats panel: histogram re-sampled like a bootstrap, density curve, 95% CI band
+    px, py, pw, ph = 762, 58, 216, 240
+    out.append(f'<rect x="{px}" y="{py}" width="{pw}" height="{ph}" rx="12" fill="{t["panel"]}" stroke="{t["border"]}"/>'
+               f'<text x="{px + 14}" y="{py + 22}" style="font:700 10px {MONO};letter-spacing:1.4px" fill="{t["cyan"]}">BOOTSTRAP · B=10k</text>'
+               f'<text x="{px + pw - 14}" y="{py + 22}" style="font:10px {MONO};text-anchor:end" fill="{t["muted"]}">live</text>'
+               f'<circle cx="{px + pw - 44}" cy="{py + 18.5}" r="3" fill="{t["green"]}" class="pulse"/>')
+    n, bx, base, bw, top = 15, px + 16, py + 168, (pw - 32) / 15, 110
+    rnd = random.Random(7)
+    dens = [math.exp(-((i - 7) / 3.1) ** 2 / 2) for i in range(n)]
+    lo, hi = 3, 11
+    out.append(f'<rect x="{bx + lo * bw:.1f}" y="{py + 40}" width="{(hi - lo + 1) * bw:.1f}" height="{base - py - 40}" fill="{t["violet"]}" opacity=".10"/>')
+    for i in range(n):
+        hs = [max(4, top * dens[i] * (0.82 + 0.36 * rnd.random())) for _ in range(4)]
+        hs.append(hs[0])
+        col = t["violet"] if lo <= i <= hi else t["muted"]
+        vals_h = ";".join(f"{h:.1f}" for h in hs)
+        vals_y = ";".join(f"{base - h:.1f}" for h in hs)
+        out.append(f'<rect x="{bx + i * bw + 1.5:.1f}" y="{base - hs[0]:.1f}" width="{bw - 3:.1f}" height="{hs[0]:.1f}" rx="2" fill="{col}" fill-opacity=".75">'
+                   f'<animate attributeName="height" values="{vals_h}" dur="6s" repeatCount="indefinite"/>'
+                   f'<animate attributeName="y" values="{vals_y}" dur="6s" repeatCount="indefinite"/></rect>')
+    pts = []
+    for k in range(61):
+        u = k / 60 * (n - 1)
+        pts.append(f"{bx + (u + .5) * bw:.1f},{base - top * 1.02 * math.exp(-((u - 7) / 3.1) ** 2 / 2):.1f}")
+    out.append(f'<polyline points="{" ".join(pts)}" fill="none" stroke="{t["cyan"]}" stroke-width="2" class="ln"/>')
+    mxl = bx + 7.5 * bw
+    out.append(f'<line x1="{mxl:.1f}" x2="{mxl:.1f}" y1="{py + 40}" y2="{base}" stroke="{t["amber"]}" stroke-dasharray="3 3"/>'
+               f'<line x1="{bx}" x2="{px + pw - 16}" y1="{base}" y2="{base}" stroke="{t["border"]}"/>'
+               f'<text x="{px + 14}" y="{base + 24}" style="font:12px {MONO}" fill="{t["text"]}">beta <tspan fill="{t["amber"]}" font-weight="700">0.40</tspan>'
+               f'<tspan fill="{t["muted"]}">  CI95 </tspan>[0.26, 0.55]</text>'
+               f'<text x="{px + 14}" y="{base + 44}" style="font:10.5px {MONO}" fill="{t["muted"]}">walk-forward · pre-registered</text>'
+               f'<text x="{px + 14}" y="{base + 60}" style="font:10.5px {MONO}" fill="{t["muted"]}">no lookahead · <tspan fill="{t["green"]}">✓</tspan></text>')
+    out.append(f'<text x="514" y="318" style="font:10px {MONO}" fill="{t["muted"]}"><tspan fill="{t["violet"]}">●</tspan> skills · plugins · mcp   '
+               f'<tspan fill="{t["green"]}">●</tspan> self-running pipelines</text>')
+    return "".join(out)
+
+
 # --------------------------------------------------------------------------------------- hero
 def hero(t):
     W, H = 1000, 340
-    nodes = [  # x, y, label, sub, colour
-        (560, 92, "SAP MDG", "source", t["amber"]),
-        (560, 172, "APIs · Odds", "source", t["amber"]),
-        (560, 252, "Events", "source", t["amber"]),
-        (712, 172, "BRONZE", "ingest", t["muted"]),
-        (812, 112, "SILVER", "clean", t["cyan"]),
-        (812, 232, "GOLD", "model", t["green"]),
-        (928, 172, "LLM", "decide", t["violet"]),
-    ]
-    edges = [(0, 3), (1, 3), (2, 3), (3, 4), (3, 5), (4, 6), (5, 6), (4, 5)]
-
-    def path(a, b):
-        x1, y1 = nodes[a][0] + 46, nodes[a][1]
-        x2, y2 = nodes[b][0] - 46, nodes[b][1]
-        if nodes[a][0] == nodes[b][0]:  # vertical (silver -> gold)
-            x1 = x2 = nodes[a][0]
-            y1, y2 = nodes[a][1] + 18, nodes[b][1] - 18
-            return f"M{x1},{y1} L{x2},{y2}"
-        mx = (x1 + x2) / 2
-        return f"M{x1},{y1} C{mx},{y1} {mx},{y2} {x2},{y2}"
-
-    e_svg, p_svg = [], []
-    for i, (a, b) in enumerate(edges):
-        d = path(a, b)
-        e_svg.append(f'<path id="e{i}" d="{d}" class="edge"/>')
-        col = nodes[b][4]
-        for k in range(2):
-            p_svg.append(
-                f'<circle r="3" fill="{col}"><animateMotion dur="{2.4 + (i % 3) * 0.5}s" '
-                f'begin="{k * 1.2 + i * 0.17:.2f}s" repeatCount="indefinite"><mpath href="#e{i}"/>'
-                f'</animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="{2.4 + (i % 3) * 0.5}s" '
-                f'begin="{k * 1.2 + i * 0.17:.2f}s" repeatCount="indefinite"/></circle>')
-    n_svg = []
-    for i, (x, y, label, sub, col) in enumerate(nodes):
-        n_svg.append(
-            f'<g class="node" style="animation-delay:{i * 0.35:.2f}s">'
-            f'<rect x="{x - 46}" y="{y - 18}" width="92" height="36" rx="8" fill="{t["panel"]}" stroke="{col}" stroke-opacity=".7"/>'
-            f'<text x="{x}" y="{y - 1}" class="nl" fill="{col}">{esc(label)}</text>'
-            f'<text x="{x}" y="{y + 11}" class="ns">{sub}</text></g>')
+    right = right_panel(t)
 
     lines = [
         ("$", " whoami"),
-        (">", " senior data engineer · pipelines · ml · frontier llms"),
+        (">", " statistics · data science · agentic genai · mcp"),
         ("$", " run --from raw --to insight --guard rigor"),
     ]
     typed = []
@@ -108,6 +133,12 @@ def hero(t):
 @keyframes fadein{{to{{opacity:1}}}}
 .pulse{{animation:pulse 2s ease-in-out infinite}}
 @keyframes pulse{{50%{{opacity:.35}}}}
+.orbit{{transform-origin:628px 172px;animation:spin 40s linear infinite}}
+@keyframes spin{{to{{transform:rotate(360deg)}}}}
+.breathe{{transform-origin:628px 172px;animation:br 3s ease-in-out infinite}}
+@keyframes br{{50%{{transform:scale(1.18);opacity:.04}}}}
+.ln{{stroke-dasharray:600;stroke-dashoffset:600;animation:draw 2.5s ease-out .8s forwards}}
+@keyframes draw{{to{{stroke-dashoffset:0}}}}
 </style>
 <defs>
 <linearGradient id="hl" x1="0" x2="1"><stop offset="0" stop-color="{t["cyan"]}"/><stop offset=".55" stop-color="{t["violet"]}"/><stop offset="1" stop-color="{t["amber"]}"/></linearGradient>
@@ -132,11 +163,7 @@ def hero(t):
 </g>
 {"".join(typed)}
 
-<text x="514" y="42" style="font:10px {MONO};letter-spacing:2px" fill="{t["muted"]}">LIVE PIPELINE · MEDALLION → LLM</text>
-{"".join(e_svg)}
-{"".join(p_svg)}
-{"".join(n_svg)}
-<text x="514" y="312" style="font:10px {MONO}" fill="{t["muted"]}"><tspan fill="{t["green"]}">●</tspan> tests <tspan fill="{t["text"]}">696 ✓</tspan>   <tspan fill="{t["cyan"]}">●</tspan> dq checks <tspan fill="{t["text"]}">pass</tspan>   <tspan fill="{t["violet"]}">●</tspan> lookahead <tspan fill="{t["text"]}">0</tspan></text>
+{right}
 </svg>'''
 
 
