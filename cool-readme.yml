@@ -1,0 +1,16 @@
+user: yasaiiko
+show: [summary, languages, weekly, streaks]
+count:
+  private: true
+  orgs: true
+look:
+  style: classic
+  color: cyan
+  background: none
+  border: true
+cards:
+  summary:
+    ring: github
+  languages:
+    count: 6
+    other: false

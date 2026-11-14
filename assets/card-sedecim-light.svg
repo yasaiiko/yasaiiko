@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 236" width="480" height="236" role="img" aria-label="sedecim">
+<style>
+.ln{stroke-dasharray:400;stroke-dashoffset:400;animation:draw 2.2s ease-out .3s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.ar{opacity:0;animation:f 1s ease-out 1.6s forwards}@keyframes f{to{opacity:.18}}
+.pulse{animation:p 2s ease-in-out infinite}@keyframes p{50%{opacity:.3}}
+</style>
+<rect x=".5" y=".5" width="479" height="235" rx="14" fill="#ffffff" stroke="#d0d7de"/>
+<rect x="24" y="0" width="56" height="3" rx="1.5" fill="#6d28d9"/>
+<text x="24" y="40" style="font:700 10px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;letter-spacing:1.6px" fill="#6d28d9">RESEARCH · QUANT</text>
+<text x="24" y="76" style="font:800 26px -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif;letter-spacing:-.5px" fill="#1f2328">sedecim</text>
+<text x="24" y="106" style="font:13.5px -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" fill="#59636e">Prediction markets + an LLM decision model</text>
+<text x="24" y="125" style="font:13.5px -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" fill="#59636e">vs the dYdX BTC perpetual, net of costs.</text>
+<path d="M330,68 L330.0,51.0 L338.9,45.3 L347.7,51.0 L356.6,39.7 L365.4,45.3 L374.3,34.0 L383.1,39.7 L392.0,39.7 L400.9,45.3 L409.7,39.7 L418.6,45.3 L427.4,45.3 L436.3,39.7 L445.1,45.3 L454.0,39.7 L454,68 Z" fill="#6d28d9" class="ar"/>
+<polyline points="330.0,51.0 338.9,45.3 347.7,51.0 356.6,39.7 365.4,45.3 374.3,34.0 383.1,39.7 392.0,39.7 400.9,45.3 409.7,39.7 418.6,45.3 427.4,45.3 436.3,39.7 445.1,45.3 454.0,39.7" fill="none" stroke="#6d28d9" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" class="ln"/>
+<circle cx="454.0" cy="39.7" r="3.5" fill="#6d28d9" class="pulse"/>
+<line x1="24" x2="456" y1="152" y2="152" stroke="#d0d7de"/>
+<text x="24" y="188" style="font:700 18px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" fill="#1f2328">~6,000</text><text x="24" y="206" style="font:11px -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" fill="#59636e">pre-registered configs</text><text x="172" y="188" style="font:700 18px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" fill="#1f2328">12</text><text x="172" y="206" style="font:11px -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" fill="#59636e">research lanes</text><text x="320" y="188" style="font:700 18px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" fill="#1f2328">696</text><text x="320" y="206" style="font:11px -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" fill="#59636e">tests passing</text>
+<circle cx="368" cy="83" r="5" fill="#3572A5"/>
+<text x="378" y="87" style="font:12px -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" fill="#59636e">Python</text>
+</svg>
