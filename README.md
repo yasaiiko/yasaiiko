@@ -1,5 +1,5 @@
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg"><img src="assets/hero-light.svg" width="100%" alt="Victor Carrión · Senior Data Engineer"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg"><img src="assets/hero-light.svg" width="100%" alt="Víctor Carrión · Senior Data Engineer"></picture>
 </p>
 
 <p align="center">

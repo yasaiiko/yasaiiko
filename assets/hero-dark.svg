@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340" width="1000" height="340" role="img" aria-label="Victor Carrión, Senior Data Engineer">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340" width="1000" height="340" role="img" aria-label="Víctor Carrión, Senior Data Engineer">
 <style>
 .edge{fill:none;stroke:#1e2a3a;stroke-width:1.6}
 .nl{font:700 11px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;text-anchor:middle;letter-spacing:.5px}
@@ -29,7 +29,7 @@
 <g class="fade">
 <circle cx="62" cy="58" r="4" fill="#34d399" class="pulse"/>
 <text x="74" y="62" style="font:12px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" fill="#8b98a5">online · Data Engineering @ <tspan fill="#e6edf3" font-weight="700">dsm-firmenich</tspan></text>
-<text x="54" y="122" style="font:800 50px -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif;letter-spacing:-1.5px" fill="#e6edf3">Victor Carrión</text>
+<text x="54" y="122" style="font:800 50px -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif;letter-spacing:-1.5px" fill="#e6edf3">Víctor Carrión</text>
 <text x="56" y="160" style="font:600 21px -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" fill="url(#hl)">Senior Data Engineer</text>
 <text x="56" y="190" style="font:14px -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" fill="#8b98a5">Pipeline automation · Data analysis · Forward development</text>
 <text x="56" y="209" style="font:14px -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" fill="#8b98a5">powered by frontier LLMs and machine learning.</text>

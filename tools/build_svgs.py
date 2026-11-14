@@ -94,7 +94,7 @@ def hero(t):
     cursor_x = 56 + len(lines[-1][0] + lines[-1][1]) * 8.45 + 4
     typed.append(f'<rect x="{cursor_x:.0f}" y="{y0 + 2 * 24 - 13}" width="9" height="16" fill="{t["cyan"]}" class="cur"/>')
 
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Victor Carrión, Senior Data Engineer">
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Víctor Carrión, Senior Data Engineer">
 <style>
 .edge{{fill:none;stroke:{t["border"]};stroke-width:1.6}}
 .nl{{font:700 11px {MONO};text-anchor:middle;letter-spacing:.5px}}
@@ -125,7 +125,7 @@ def hero(t):
 <g class="fade">
 <circle cx="62" cy="58" r="4" fill="{t["green"]}" class="pulse"/>
 <text x="74" y="62" style="font:12px {MONO}" fill="{t["muted"]}">online · Data Engineering @ <tspan fill="{t["text"]}" font-weight="700">dsm-firmenich</tspan></text>
-<text x="54" y="122" style="font:800 50px {SANS};letter-spacing:-1.5px" fill="{t["text"]}">Victor Carrión</text>
+<text x="54" y="122" style="font:800 50px {SANS};letter-spacing:-1.5px" fill="{t["text"]}">Víctor Carrión</text>
 <text x="56" y="160" style="font:600 21px {SANS}" fill="url(#hl)">Senior Data Engineer</text>
 <text x="56" y="190" style="font:14px {SANS}" fill="{t["muted"]}">Pipeline automation · Data analysis · Forward development</text>
 <text x="56" y="209" style="font:14px {SANS}" fill="{t["muted"]}">powered by frontier LLMs and machine learning.</text>
