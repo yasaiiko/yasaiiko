@@ -61,4 +61,4 @@ I build **data pipelines that run themselves**: from SAP master data and enterpr
 </p>
 <!-- cool-readme:end -->
 
-<p align="center"><sub>`SELECT insight FROM chaos WHERE rigor = true;`</sub></p>
+<p align="center"><sub><code>SELECT insight FROM chaos WHERE rigor = true;</code></sub></p>
